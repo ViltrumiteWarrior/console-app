@@ -9,41 +9,45 @@ def show_tasks():
             print(f"[{i + 1}] {status} {tasks[i]['title']}")
 
 def add_task():
-    task = input("Введите задачу: ").strip()
-    if task.isdigit():
-        print("Задача не может быть числом.")
-    elif not task:
-        print("Задача не может быть пустой.")
-    else:
-        tasks.append({'title': task, 'completed': False})
-        print(f"Задача [{task}] добавлена.")
+    while True:
+        task = input("Введите задачу: ").strip()
+        if task.isdigit():
+            print("Задача не может быть числом.")
+        elif not task:
+            print("Задача не может быть пустой.")
+        else:
+            tasks.append({'title': task, 'completed': False})
+            print(f"Задача [{task}] добавлена.")
 
 def delete_task():
-    show_tasks()
-    task_remove_index = input("Введите номер задачи для удаления: ").strip()
-    if task_remove_index and task_remove_index.isdigit():
-        task_remove_index = int(task_remove_index) - 1
-        if 0 <= task_remove_index < len(tasks):
-            removed_task = tasks.pop(task_remove_index)
-            print(f"Задача '{removed_task['title']}' удалена.")
+    while True:
+        show_tasks()
+        task_remove_index = input("Введите номер задачи для удаления: ").strip()
+        if task_remove_index and task_remove_index.isdigit():
+            task_remove_index = int(task_remove_index) - 1
+            if 0 <= task_remove_index < len(tasks):
+                removed_task = tasks.pop(task_remove_index)
+                print(f"Задача '{removed_task['title']}' удалена.")
+                break
+            else:
+                print("Неверный номер задачи. Попробуйте снова.")
         else:
-            print("Неверный номер задачи.")
-    else:
-        print("Вы не ввели номер задачи. Пожалуйста, попробуйте снова.")
+            print("Вы не ввели номер задачи. Пожалуйста, попробуйте снова.")
 
 def complete_task():
-    show_tasks()
-    task_complete_index = input("Введите номер задачи для пометки выполненной: ").strip()
-    if task_complete_index and task_complete_index.isdigit():
-        task_complete_index = int(task_complete_index) - 1
-        if 0 <= task_complete_index < len(tasks):
-            tasks[task_complete_index]['completed'] = True
-            print(f"Задача [{tasks[task_complete_index]['title']}] выполнена.")
+    while True:
+        show_tasks()
+        task_complete_index = input("Введите номер задачи для пометки выполненной: ").strip()
+        if task_complete_index and task_complete_index.isdigit():
+            task_complete_index = int(task_complete_index) - 1
+            if 0 <= task_complete_index < len(tasks):
+                tasks[task_complete_index]['completed'] = True
+                print(f"Задача [{tasks[task_complete_index]['title']}] выполнена.")
+                break
+            else:
+                print("Неверный номер задачи. Попробуйте снова.")
         else:
-            print("Неверный номер задачи.")
-    else:
-        print("Вы не ввели номер задачи. Пожалуйста, попробуйте снова.")
-
+            print("Вы не ввели номер задачи. Пожалуйста, попробуйте снова.")
 def main():
     print(
         """
